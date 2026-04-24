@@ -834,6 +834,11 @@ a.post-card__image {
   display: block;
 }
 
+/* list row: no extra corner radius on the img; parent + .post-card overflow clip the frame */
+.post-grid.view-list .post-card__thumb {
+  border-radius: 0;
+}
+
 a.post-card__image:hover {
   opacity: 0.92;
   filter: brightness(0.98);
@@ -958,8 +963,10 @@ a.post-card__meta:hover {
   min-width: 7.5rem;
   max-width: 220px;
   flex-shrink: 0;
-  aspect-ratio: 16 / 9;
-  align-self: center;
+  align-self: stretch;
+  aspect-ratio: auto;
+  min-height: 7.5rem;
+  height: auto;
   border-radius: 0;
 }
 
@@ -983,7 +990,11 @@ a.post-card__meta:hover {
     width: 100%;
     max-width: none;
     min-width: 0;
-    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    align-self: stretch;
+    aspect-ratio: 16 / 9;
+    min-height: 0;
+    height: auto;
+    border-radius: 0;
   }
 }
 
@@ -1697,13 +1708,14 @@ img.article-author__img {
   width: 100%;
 }
 
+/* related list: let .post-card { overflow: hidden; border-radius } clip the image — avoid a second, mismatched radius */
 .post-grid--related.view-list .post-card__image {
-  border-radius: var(--radius-md) 0 0 var(--radius-md);
+  border-radius: 0;
 }
 
 @media (max-width: 30rem) {
   .post-grid--related.view-list .post-card__image {
-    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    border-radius: 0;
   }
 }
 
